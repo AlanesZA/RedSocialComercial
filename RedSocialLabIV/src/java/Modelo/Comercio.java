@@ -63,7 +63,7 @@ public class Comercio {
 
     @Override
     public String toString() {
-        return "Comercio{" + ", rubro=" + rubro + ", nombre=" + nombre;
+        return nombre;
     }
     
     

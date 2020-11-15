@@ -75,9 +75,10 @@
                                     <select id="comercio" name="cboComercio" class="form-control">
                                         <option>-- Seleccione --</option>
 
-                                    <c:forEach var="item" items="${GestorBD.obtenerComerciosActivos()}">
-                                        <option value="${item.idComercio}"> ${item}</option>
-                                    </c:forEach>
+                                    <c:forEach var="item" items="${GestorBD.obtenerComercios()}">
+                                        <option value="${item.getId()}"> ${item}</option>
+                                    </c:forEach>   
+                                        
                                 </select>
                             </div>
                                

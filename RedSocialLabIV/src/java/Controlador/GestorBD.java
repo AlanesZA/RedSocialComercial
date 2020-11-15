@@ -195,36 +195,6 @@ public class GestorBD {
         return lista;
     }
 
-//
-//    public ArrayList<DTOComerciosNoActivos> obtenerComerciosNoActivos() {
-//        ArrayList<DTOComerciosNoActivos> lista = new ArrayList<DTOComerciosNoActivos>();
-//        try {
-//            abrirConexion();
-//            Statement st = con.createStatement();
-//            ResultSet rs = st.executeQuery("select c.idComercio,c.fecha_inicio,r.rubro,c.estado, c.nombre\n"
-//                    + "   from Comercios c, Rubros r\n"
-//                    + "     where c.idRubro = r.idRubro\n"
-//                    + "   and c.estado = 0");
-//            while (rs.next()) {
-//                int id = rs.getInt("idComercio");
-//                String fi = rs.getString("fecha_inicio");
-//                String rubro = rs.getString("rubro");
-//                String nombre = rs.getString("nombre");
-//                int estado = rs.getInt("estado");
-//
-//                DTOComerciosNoActivos c = new DTOComerciosNoActivos(id, fi,estado,rubro, nombre);
-//
-//                lista.add(c);
-//            }
-//            rs.close();
-//        } catch (Exception exc) {
-//            exc.printStackTrace();
-//        } finally {
-//            cerrarConexion();
-//        }
-//
-//        return lista;
-//    }
     public void habilitarComercio(int idComercio) {
         try {
             abrirConexion();
@@ -313,7 +283,7 @@ public class GestorBD {
             ps.setInt(4, o.getDiasVigencia());
             ps.setString(5, o.getTitulo());
             ps.setInt(6, o.getEstado());
-            ps.setInt(7, o.getIdComercio());
+            ps.setInt(7, o.getComercio().getId());
 
             ps.execute();
 
@@ -323,9 +293,9 @@ public class GestorBD {
             cerrarConexion();
         }
     }
-
+   
     public ArrayList<Oferta> obtenerOferta() {
-        ArrayList<Oferta> lista = new ArrayList<Oferta>();
+        ArrayList<Oferta> lista = new ArrayList<>();
         try {
             abrirConexion();
             Statement st = con.createStatement();
@@ -341,8 +311,10 @@ public class GestorBD {
                 String titulo = rs.getString("titulo");
                 int estado = rs.getInt("estado");
                 int idComercio = rs.getInt("idComercio");
-
-                Oferta o = new Oferta(id, cantidad, po, fio, dias_vigencia, titulo, estado, idComercio);
+                
+                Comercio co = new Comercio();
+                co.setId(idComercio);
+                Oferta o = new Oferta(id, cantidad, po, fio, dias_vigencia, titulo, estado, co);
 
                 lista.add(o);
             }
@@ -368,7 +340,7 @@ public class GestorBD {
             ps.setInt(4, o.getDiasVigencia());
             ps.setString(5, o.getTitulo());
             ps.setInt(6, o.getEstado());
-            ps.setInt(7, o.getIdComercio());
+            ps.setInt(7, o.getComercio().getId());//ver
 
             ps.execute();
         } catch (SQLException e) {
@@ -394,9 +366,10 @@ public class GestorBD {
                 int dv = rs.getInt("dias_vigencia");
                 String titulo = rs.getString("titulo");
                 int estado = rs.getInt("estado");
-                int idc = rs.getInt("idComercio");
-
-                o = new Oferta(id, cantidad, po, fio, dv, titulo, estado, idc);
+                int idComercio = rs.getInt("idComercio");
+                
+                Comercio com = obtenerComercioUpdate(idComercio);
+                o = new Oferta(id, cantidad, po, fio, dv, titulo, estado, com);
                 o.setId(id);
             }
             rs.close();
@@ -407,7 +380,8 @@ public class GestorBD {
         }
         return o;
     }
-
+    
+    
     public void bajaOferta(int idOferta) {
         try {
             abrirConexion();

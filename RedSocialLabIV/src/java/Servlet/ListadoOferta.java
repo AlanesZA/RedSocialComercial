@@ -19,46 +19,30 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ListadoOferta", urlPatterns = {"/ListadoOferta"})
 public class ListadoOferta extends HttpServlet {
     
-    
-     Oferta c = new Oferta();
-    GestorBD gestor = new GestorBD();
-    ArrayList<Oferta> lista = gestor.obtenerOferta();
+   
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         GestorBD gestor = new GestorBD();         
-        ArrayList<Oferta> listadoOfertas = gestor.obtenerOferta();
-        request.setAttribute("listadoOfertas", listadoOfertas);
+        ArrayList<Oferta> ofertas = gestor.obtenerOferta();
+        request.setAttribute("lista", ofertas);
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/listadoOfertas.jsp");
         rd.forward(request, response);
+      
+        
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         GestorBD g = new GestorBD();
-
-        ArrayList<Oferta> lista = g.obtenerOferta();
-        request.setAttribute("listadoComercios", lista);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/listadoComercios.jsp");
-        rd.forward(request, response);
-        
-        
+    
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String accion = request.getParameter("accion");
-        switch (accion) {
-            case "Listar":
-                ArrayList<Oferta> datos = gestor.obtenerOferta();
-                request.setAttribute("datos", datos);
-                request.getRequestDispatcher("listadoOfertas.jsp").forward(request, response);
-                break;
-        }
-        
+  
     }
 
     @Override

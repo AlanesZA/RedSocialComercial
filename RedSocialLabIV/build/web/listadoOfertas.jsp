@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="GBD" class="Controlador.GestorBD" scope="session"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -20,7 +21,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Cantidad</th>
                                     <th>Precio Oferta</th>
                                     <th>Fecha Inic. Oferta</th>
@@ -34,22 +34,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="item" items="${AltaOferta}">
+                            <c:forEach var="oferta" items="${GBD.obtenerOferta()}">
                                 <tr>
-                                    <td>${item.idOferta}</td>
-                                    <td>${item.cantidad}</td>
-                                    <td>${item.precio}</td>
-                                    <td>${item.fechaInicioOferta}</td>
-                                    <td>${item.diasVigencia}</td>
-                                    <td>${item.titulo}</td>
-                                      <td>${item.estado}</td>
-                                    <td>${item.comercio}</td>
+                                    <td>${oferta.cantidad}</td>
+                                    <td>${oferta.precio}</td>
+                                    <td>${oferta.fechaInicioOferta}</td>
+                                    <td>${oferta.diasVigencia}</td>
+                                    <td>${oferta.titulo}</td>
+                                      <td>${oferta.estado}</td>
+                                    <td>${oferta.comercio}</td>
 
                                     <td>
-                                        <a href="OfertaABM?accion=editar&id= ${item.id} "class="btn btn-success" role="button" >Editar</a>
+                                        <a href="OfertaABM?accion=editar&id= ${oferta.id} "class="btn btn-success" role="button" >Editar</a>
                                     </td>
                                     <td>                                          
-                                        <a href="OfertaABM?accion=eliminar&id=${item.id}" class="btn btn-danger" role="button" >Eliminar</a>
+                                        <a href="OfertaABM?accion=eliminar&id=${oferta.id}" class="btn btn-danger" role="button" >Eliminar</a>
                                     </td>
 
 

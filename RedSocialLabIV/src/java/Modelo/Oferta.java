@@ -9,9 +9,9 @@ public class Oferta {
     private int diasVigencia;
     private String titulo;
     private int estado;
-    private int idComercio;
+    private Comercio comercio;
 
-    public Oferta(int id, int cantidad, double precio, String fechaInicioOferta, int diasVigencia, String titulo, int estado, int idComercio) {
+    public Oferta(int id, int cantidad, double precio, String fechaInicioOferta, int diasVigencia, String titulo, int estado, Comercio comercio) {
         this.id = id;
         this.cantidad = cantidad;
         this.precio = precio;
@@ -19,7 +19,10 @@ public class Oferta {
         this.diasVigencia = diasVigencia;
         this.titulo = titulo;
         this.estado = estado;
-        this.idComercio = idComercio;
+        this.comercio = comercio;
+    }
+
+    public Oferta() {
     }
 
     public int getId() {
@@ -78,24 +81,18 @@ public class Oferta {
         this.estado = estado;
     }
 
-    public int getIdComercio() {
-        return idComercio;
+    public Comercio getComercio() {
+        return comercio;
     }
 
-    public void setIdComercio(int idComercio) {
-        this.idComercio = idComercio;
-    }
-
-    public Oferta() {
+    public void setComercio(Comercio comercio) {
+        this.comercio = comercio;
     }
 
     @Override
     public String toString() {
-        return "Oferta{" + "id=" + id + ", cantidad=" + cantidad + ", precio=" + precio + ", fechaInicioOferta=" + fechaInicioOferta + ", diasVigencia=" + diasVigencia + ", titulo=" + titulo + ", estado=" + estado + ", idComercio=" + idComercio + '}';
+        return "Oferta{" + "id=" + id + ", cantidad=" + cantidad + ", precio=" + precio + ", fechaInicioOferta=" + fechaInicioOferta + ", diasVigencia=" + diasVigencia + ", titulo=" + titulo + ", estado=" + estado + ", comercio=" + comercio + '}';
     }
 
-    
-
-   
     
 }
