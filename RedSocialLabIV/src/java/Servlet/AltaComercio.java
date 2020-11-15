@@ -55,7 +55,7 @@ public class AltaComercio extends HttpServlet {
        
         gestor.insertarNuevoComercio(c);
      
-        RequestDispatcher rd = request.getRequestDispatcher("/registroComercio.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/listadoComercios.jsp");
         rd.forward(request, response);
     }
 

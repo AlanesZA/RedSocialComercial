@@ -290,7 +290,7 @@ public class GestorBD {
     public void bajaComercio(int idComercio) {
         try {
             abrirConexion();
-            PreparedStatement ps = con.prepareStatement("UPDATE Comercios SET esatdo = 0 where idComercio = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE Comercios SET estado = 0 where idComercio = ?");
             ps.clearParameters();
             ps.setInt(1, idComercio);
             ps.executeUpdate();
