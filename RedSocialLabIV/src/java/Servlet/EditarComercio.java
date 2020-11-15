@@ -27,9 +27,12 @@ public class EditarComercio extends HttpServlet {
 
         int idComercio = Integer.parseInt(request.getParameter("id"));
         Comercio c = null;
+        
         GestorBD gestor = new GestorBD();
         RequestDispatcher rd;
 
+        
+        
         if (estado == 3)//modificar
         {
             c = gestor.obtenerComercioUpdate(idComercio);
@@ -41,10 +44,12 @@ public class EditarComercio extends HttpServlet {
             String fechaInicio = request.getParameter("txtFechaInicio");
             int id = Integer.parseInt(request.getParameter("cboRubro"));
             String nombre = request.getParameter("txtNombre");
-            c.setFechainicio(fechaInicio);
+           
             
             Rubro r = gestor.obtenerRubroUpdate(id); 
+            c = new Comercio();
             c.setRubro(r);
+            c.setFechainicio(fechaInicio);
             c.setNombre(nombre);
             c.setId(idComercio);
 
@@ -85,40 +90,40 @@ public class EditarComercio extends HttpServlet {
 //
 //        
 //        
-////        String idestado = (String) request.getParameter("estado");
-////        int estado = Integer.parseInt(idestado);
-////        String iddocumento = (String) request.getParameter("id");
-////        int documento = Integer.parseInt(iddocumento);
-////        RequestDispatcher rd;
-////        Socio a = ((Socio) request.getSession().getAttribute("socio"));
-////        GestorSocios gestor = new GestorSocios();
-////        if (estado == 0)
-////        {
-////            gestor.getAgregarSocio(a);
-////            rd = getServletContext().getRequestDispatcher("/listadoSocios.jsp");
-////            rd.forward(request, response);
-////        } else if (estado == 2)//baja
-////        {
-////            gestor.getBajaSocio(documento);
-////            rd = getServletContext().getRequestDispatcher("/listadoSocios.jsp");
-////            rd.forward(request, response);
-////        } else if (estado == 1)//alta
-////        {
-////            gestor.getAltaSocio(documento);
-////            rd = getServletContext().getRequestDispatcher("/listadoSocios.jsp");
-////            rd.forward(request, response);
-////        } else if (estado == 3)
-////        {
-////            Socio b = gestor.getSocio(documento);
-////            request.getSession().setAttribute("socio", b);
-////            rd = getServletContext().getRequestDispatcher("/editarSocio.jsp");
-////            rd.forward(request, response);
-////        } else if (estado == 4)
-////        {
-////            gestor.getActualizarSocio(a);
-////            rd = getServletContext().getRequestDispatcher("/listadoSocios.jsp");
-////            rd.forward(request, response);
-////        }
+//        String idestado = (String) request.getParameter("estado");
+//        int estado = Integer.parseInt(idestado);
+//        String iddocumento = (String) request.getParameter("id");
+//        int documento = Integer.parseInt(iddocumento);
+//        RequestDispatcher rd;
+//        Socio a = ((Socio) request.getSession().getAttribute("socio"));
+//        GestorSocios gestor = new GestorSocios();
+//        if (estado == 0)
+//        {
+//            gestor.getAgregarSocio(a);
+//            rd = getServletContext().getRequestDispatcher("/listadoSocios.jsp");
+//            rd.forward(request, response);
+//        } else if (estado == 2)//baja
+//        {
+//            gestor.getBajaSocio(documento);
+//            rd = getServletContext().getRequestDispatcher("/listadoSocios.jsp");
+//            rd.forward(request, response);
+//        } else if (estado == 1)//alta
+//        {
+//            gestor.getAltaSocio(documento);
+//            rd = getServletContext().getRequestDispatcher("/listadoSocios.jsp");
+//            rd.forward(request, response);
+//        } else if (estado == 3)
+//        {
+//            Socio b = gestor.getSocio(documento);
+//            request.getSession().setAttribute("socio", b);
+//            rd = getServletContext().getRequestDispatcher("/editarSocio.jsp");
+//            rd.forward(request, response);
+//        } else if (estado == 4)
+//        {
+//            gestor.getActualizarSocio(a);
+//            rd = getServletContext().getRequestDispatcher("/listadoSocios.jsp");
+//            rd.forward(request, response);
+//        }
 //
 //        
     }

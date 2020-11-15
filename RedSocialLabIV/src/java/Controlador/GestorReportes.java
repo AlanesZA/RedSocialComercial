@@ -228,24 +228,25 @@ public class GestorReportes {
         return lista;
     }
 
+
     //Comercios
-    public ArrayList<Comercio> ObtenerComercios() {
-        ArrayList<Comercio> lista = new ArrayList<>();
+    public ArrayList<DtoComercio> ObtenerComercios() {
+        ArrayList<DtoComercio> lista = new ArrayList<>();
         try {
             abrirConexion();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(" SELECT c.idComercio, c.nombre, c.fecha_inicio, r.rubro\n"
-                    + " FROM Comercios c\n"
-                    + " Join Rubros r on r.idRubro = c.idRubro\n"
-                    + "  WHERE c.estado = 1");
+            ResultSet rs = st.executeQuery("SSELECT c.nombre, c.fecha_inicio, r.rubro, c.estado\n"
+                    + "FROM Comercios c\n"
+                    + "Join Rubros r on r.idRubro = c.idRubro\n"
+                    + "WHERE c.estado = 1");
             while (rs.next()) {
-                int Id_Comercio = rs.getInt("idComercio");
-                String Comercio = rs.getString("nombre");
-                String fechainicio = rs.getString("fecha_inicio");
-                String Rubro = rs.getString("rubro");
-                int estado = rs.getInt("estado");
 
-                Comercio c = new Comercio(Id_Comercio, fechainicio, Rubro, estado, Comercio);
+                String fechainicio = rs.getString("fecha_inicio");
+                String rubro = rs.getString("rubro");
+                int estado = rs.getInt("estado");
+                String comercio = rs.getString("nombre");
+
+                DtoComercio c = new DtoComercio(fechainicio, rubro, estado, comercio);
                 lista.add(c);
             }
             rs.close();
@@ -257,8 +258,8 @@ public class GestorReportes {
         return lista;
     }
 
-    public Comercio ObtenerComercio(int id) {
-        Comercio c = new Comercio();
+    public DtoComercio ObtenerComercio(int id) {
+        DtoComercio c = new DtoComercio();
         try {
             abrirConexion();
             Statement st = con.createStatement();
@@ -267,13 +268,12 @@ public class GestorReportes {
                     + "   Join Rubros r on r.idRubro = c.idRubro\n"
                     + "      WHERE c.estado = 1 and c.idComercio = ?");
             while (rs.next()) {
-                int Id_Comercio = rs.getInt("idComercio");
-                String Comercio = rs.getString("nombre");
+                String nombre = rs.getString("nombre");
                 String fechainicio = rs.getString("fecha_inicio");
-                String Rubro = rs.getString("rubro");
+                String rubro = rs.getString("rubro");
                 int estado = rs.getInt("estado");
 
-                c = new Comercio(Id_Comercio, fechainicio, Rubro, estado, Comercio);
+                c = new DtoComercio(fechainicio, rubro,estado, nombre);
             }
             rs.close();
         } catch (SQLException ex) {
@@ -306,5 +306,4 @@ public class GestorReportes {
         }
     }
 
-  
 }

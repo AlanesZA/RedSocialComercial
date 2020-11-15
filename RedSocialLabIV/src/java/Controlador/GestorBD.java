@@ -115,9 +115,9 @@ public class GestorBD {
             ps.setInt(1, idRubro);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                String rubro = rs.getString("rubro");
-                String descripcion = rs.getString("descripcion");
-                int estado = rs.getInt("estado");
+                String rubro = rs.getString(2);
+                String descripcion = rs.getString(3);
+                int estado = rs.getInt(4);
 
                 resultado = new Rubro(idRubro, rubro, descripcion, estado);
             }
@@ -243,12 +243,13 @@ public class GestorBD {
     public void actualizarComercio(Comercio c) {
         try {
             abrirConexion();
-            PreparedStatement ps = con.prepareStatement("UPDATE Comercios SET fecha_inicio = ?, idRubro = ?, estado = ?, nombre = ? where idComercio=? ");
+            PreparedStatement ps = con.prepareStatement("UPDATE Comercios SET fecha_inicio = ?, idRubro = ?, estado = 1, nombre = ? where idComercio=? ");
             ps.clearParameters();
+            
             ps.setString(1, c.getFechainicio());
             ps.setInt(2, c.getRubro().getId());
-            ps.setInt(3, c.getEstado());
-            ps.setString(4, c.getNombre());
+            ps.setString(3, c.getNombre());
+             ps.setInt(4, c.getId());
 
             ps.execute();
         } catch (SQLException e) {

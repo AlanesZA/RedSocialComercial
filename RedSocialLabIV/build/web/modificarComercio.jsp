@@ -39,36 +39,20 @@
                                     <input class="form-control" type="text" name="txtFechaInicio" value="<jsp:getProperty name="comercio" property="fechainicio"></jsp:getProperty>"/>
                                 </div>
 
-
-                                
-                                
-                                <div class="col-sm-3">
-                                    <select name="tipodocumento" class="form-control"/>
-                                    <c:forEach var="td" items="${GS.tipoDocumentos}">
-                                        <option value=${td.idtipodoc}<c:if test="${td.idtipodoc==socio.tipodocumento}"> selected</c:if>>${td.detalle}</option>
-                                    </c:forEach>
-                                    </select>
-                                </div>
-                                
-                                
-                                
-                                
-                                
-                                
+   
                                 <div class="form-group col-md-12">
                                 </div>
                                 <div class="form-group col-md-7">
                                     <label>Rubro: </label>
                                     <select id="rubro" name="cboRubro" class="form-control">
-                                        <option>-- Seleccione --</option>
+                                       <!-- <option>-- Seleccione --</option>  -->
 
                                     <c:forEach var="item" items="${GestorBD.obtenerRubro()}">
-                                         <option value=${item.getId()}<c:if test="${item.id==Rubro.item.nombre}"> selected</c:if>>${td.detalle} </option>
-                                        <option value=${item.getId()}<c:if test="${td.idtipodoc==socio.tipodocumento}"> selected</c:if>>${td.detalle} </option>
+                                         <option value=${item.getId()}<c:if test="${item.id==Rubro.id}"> selected</c:if>>${item.rubro} </option>
+ 
                                     </c:forEach>
                                 </select>
                             </div>
-
 
                             <div class="form-group col-md-12">
                             </div>
@@ -77,19 +61,15 @@
                                 <input class="form-control" type="text" name="txtNombre" value="<jsp:getProperty name="comercio" property="nombre"></jsp:getProperty>"/>
                                 </div>
 
-
                                 <div class="form-group col-md-12">
                                 </div>
                                 <div class="form-group pull-right">
                                     <input type="submit" value="Actualizar"> <br>
-             
-                                    
-                                    <a href="ListadoComercios">Regresar</a> <br>
-                                 
                                 </div>
 
                             </form>
                                 
+                                <a href="ListadoComercios" class="btn btn-primary form-control" role="button" >Regresar</a> <br>
                                  <a href="home.jsp" class="btn btn-primary form-control" role="button">Volver al Menu</a>
                         </div>
                     </div>
