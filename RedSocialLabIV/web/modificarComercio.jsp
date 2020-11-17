@@ -48,7 +48,7 @@
                                        <!-- <option>-- Seleccione --</option>  -->
 
                                     <c:forEach var="item" items="${GestorBD.obtenerRubro()}">
-                                         <option value=${item.getId()}<c:if test="${item.id==Rubro.id}"> selected</c:if>>${item.rubro} </option>
+                                         <option value=${item.getId()}<c:if test="${item.getId() == comercio.id}"> selected</c:if>>${item.rubro}</option>
  
                                     </c:forEach>
                                 </select>

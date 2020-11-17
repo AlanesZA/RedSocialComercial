@@ -30,7 +30,7 @@ public class EditarComercio extends HttpServlet {
         
         GestorBD gestor = new GestorBD();
         RequestDispatcher rd;
-
+        
         
         
         if (estado == 3)//modificar

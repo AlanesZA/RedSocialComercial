@@ -26,7 +26,7 @@
                                     <th>Fecha Inic. Oferta</th>
                                     <th>Dias Vigencia</th>
                                     <th>Titulo</th>
-                                     <th>Estado</th>
+                                    <th>Estado</th>
                                     <th>Comercio</th>
                                     <th>Modificar</th>
                                     <th>Eliminar</th>
@@ -42,13 +42,13 @@
                                     <td>${oferta.diasVigencia}</td>
                                     <td>${oferta.titulo}</td>
                                       <td>${oferta.estado}</td>
-                                    <td>${oferta.comercio}</td>
+                                    <td>${oferta.comercio.id}</td>
 
                                     <td>
-                                        <a href="OfertaABM?accion=editar&id= ${oferta.id} "class="btn btn-success" role="button" >Editar</a>
+                                        <a href="EditarOferta?estado=3&id=${oferta.id} "class="btn btn-success" role="button">Editar</a>
                                     </td>
                                     <td>                                          
-                                        <a href="OfertaABM?accion=eliminar&id=${oferta.id}" class="btn btn-danger" role="button" >Eliminar</a>
+                                        <a href="EditarOferta?estado=5&id=${oferta.id}" class="btn btn-danger" role="button">Eliminar</a>
                                     </td>
 
 

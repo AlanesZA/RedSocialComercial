@@ -299,9 +299,9 @@ public class GestorBD {
         try {
             abrirConexion();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select o.idOferta,o.cantidad,o.precio_oferta, o.fecha_inicio_oferta, o.dias_vigencia,o.titulo, o.estado, c.nombre\n"
-                    + "from Ofertas o, Comercios c\n"
-                    + " where o.idComercio = c.idComercio");
+            ResultSet rs = st.executeQuery("select o.idOferta,o.cantidad,o.precio_oferta, o.fecha_inicio_oferta, o.dias_vigencia,o.titulo, o.estado, c.idComercio\n" +
+"                    from Ofertas o, Comercios c\n" +
+"                     where o.idComercio = c.idComercio");
             while (rs.next()) {
                 int id = rs.getInt("idOferta");
                 int cantidad = rs.getInt("cantidad");

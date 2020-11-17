@@ -28,47 +28,63 @@
                         <div class="form form-horizontal jumbotron col-md-6 col-md-push-3" >
                             <h3>Editar Comercio:</h3>
                             <br/>
-                            <form action="ListadoComerciosActivos" method="post">
-                                <input type="hidden" name="idComercio" value="<jsp:getProperty name="EditComercio" property="idComercio"></jsp:getProperty>" />
+                            <form action="EditarOferta?estado=3" method="post">
+                                <input type="hidden" name="idOferta" value="<jsp:getProperty name="idOferta" property="idComercio"></jsp:getProperty>"/>
+                                <div class="form-group col-md-12">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label>Cantidad:</label>
+                                    <input type="number" min="0" id="cantidad"  class="form-control" name="txtCantidad" value="<jsp:getProperty name="idOferta" property="idComercio"></jsp:getProperty>"/>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label>Ingrese precio ($):</label>
+                                    <input type="text" name="txtPrecio" id="precio" class="form-control" value="<jsp:getProperty name="idOferta" property="idComercio"></jsp:getProperty>"/>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label>Fecha </label>
+                                    <input type="text" name="txtFechaInicioOferta" class="form-control" id="fechaInicioOferta" value="<jsp:getProperty name="idOferta" property="idComercio"></jsp:getProperty>"/>
+                                </div>
 
 
                                 <div class="form-group col-md-12">
                                 </div>
                                 <div class="form-group col-md-7">
-                                    <label>Fecha Inicio: </label>  
-                                    <input class="form-control" type="text" name="txtFechaInicio" value="<jsp:getProperty name="EditComercio" property="fechaInicio"></jsp:getProperty>"/>
+                                    <label>Dias Vigencia:</label>
+                                    <input type="number" min="0" id="diasVigencia" data-min="0" class="form-control" name="txtDiasVigencia" value="<jsp:getProperty name="idOferta" property="idComercio"></jsp:getProperty>"/>
+
+                                <div class="form-group col-md-12">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label>Titulo:</label>
+                                    <input type="text" id="titulo" class="form-control" name="txtTitulo" value="<jsp:getProperty name="idOferta" property="idComercio"></jsp:getProperty>"/>
                                 </div>
 
 
                                 <div class="form-group col-md-12">
                                 </div>
                                 <div class="form-group col-md-7">
-                                    <label>Rubro: </label>
-                                    <select id="rubro" name="cboRubro" class="form-control">
+                                    <label>Comercio: </label>
+                                    <select id="comercio" name="cboComercio" class="form-control">
                                         <option>-- Seleccione --</option>
-
-                                    <c:forEach var="item" items="${GestorBD.obtenerRubro()}">
-                                        <option value="${item.getId()}"> ${item}</option>
-                                    </c:forEach>
+                                    <c:forEach var="item" items="${GestorBD.obtenerComercios()}">
+                                        <option value="${item.getId()}" <c:if test="${item.getId() == modeloOferta.id}">selected</c:if>> ${item}</option>
+                                    </c:forEach>   
                                 </select>
                             </div>
-
-
-                            <div class="form-group col-md-12">
-                            </div>
-                            <div class="form-group col-md-7">
-                                <label>Nombre: </label>  
-                                <input class="form-control" type="text" name="txtNombre" value="<jsp:getProperty name="EditComercio" property="nombre"></jsp:getProperty>"/>
-                                </div>
-
-
+     
                                 <div class="form-group col-md-12">
                                 </div>
                                 <div class="form-group pull-right">
-                                    <input type="submit" name="accion" value="Actualizar"> <br>
-                                    
-                                    <a href="ListadoComerciosActivos?accion=listar">Regresar</a> <br>
-                                    
+                                    <input type="submit" name="estado" value="Actualizar"> <br>
+
+                                    <a href="ListadoComercios?accion=listar">Regresar</a> <br>
+
                                     <input href="listadoComerciosActivos"  type="submit" class="btn btn-primary form-control" value="Guardar comercio"/>
                                 </div>
 
