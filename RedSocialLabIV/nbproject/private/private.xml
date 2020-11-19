@@ -3,17 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/modificarOferta.jsp</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/listadoComercios.jsp</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Modelo/Oferta.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/AltaOferta.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Modelo/Comentario.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/AltaComercio.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/modificarComercio.jsp</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/registroOferta.jsp</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/registroComercio.jsp</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/listadoOfertas.jsp</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Controlador/GestorBD.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/EditarComercio.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/listadoComercios.jsp</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/AltaOferta.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/ListadoComercios.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/AltaComercio.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/ListadoOferta.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/modificarComercio.jsp</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/EditarOferta.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/web/AltaComentarios.jsp</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Servlet/AltaComentario.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/RedSocialComercial/RedSocialLabIV/src/java/Controlador/GComentarios.java</file>
         </group>
     </open-files>
 </project-private>

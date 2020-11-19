@@ -1,8 +1,6 @@
 package Controlador;
 
 import Modelo.Comercio;
-import Modelo.DTOComerciosActivos;
-import Modelo.DTOComerciosNoActivos;
 import Modelo.Oferta;
 import Modelo.Rubro;
 import java.sql.Connection;
@@ -332,15 +330,15 @@ public class GestorBD {
     public void actualizarOferta(Oferta o) {
         try {
             abrirConexion();
-            PreparedStatement ps = con.prepareStatement("UPDATE Ofertas SET cantidad =?,precio_oferta=?, fecha_inicio_oferta=?,dias_vigencia=?,titulo=?,estado=?, idComercio=? where idOferta=? ");
+            PreparedStatement ps = con.prepareStatement("UPDATE Ofertas SET cantidad =?,precio_oferta=?, fecha_inicio_oferta=?,dias_vigencia=?,titulo=?,estado=1, idComercio=? where idOferta=? ");
             ps.clearParameters();
             ps.setInt(1, o.getCantidad());
             ps.setDouble(2, o.getPrecio());
             ps.setString(3, o.getFechaInicioOferta());
             ps.setInt(4, o.getDiasVigencia());
             ps.setString(5, o.getTitulo());
-            ps.setInt(6, o.getEstado());
-            ps.setInt(7, o.getComercio().getId());//ver
+            ps.setInt(7, o.getId());
+            ps.setInt(6, o.getComercio().getId());
 
             ps.execute();
         } catch (SQLException e) {

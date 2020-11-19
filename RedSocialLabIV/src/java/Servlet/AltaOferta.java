@@ -26,11 +26,26 @@ public class AltaOferta extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
-         GestorBD gestor = new GestorBD();
+         
+            
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            processRequest(request, response);
+       
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       
+            GestorBD gestor = new GestorBD();
             int cantidad = Integer.parseInt(request.getParameter("txtCantidad"));
             double precio = Double.parseDouble(request.getParameter("txtPrecio"));
-            String fechaInicioOferta = request.getParameter("fechaInicio");
+            String fechaInicioOferta = request.getParameter("txtFechaInicioOferta");
             int diasVigencia = Integer.parseInt(request.getParameter("txtDiasVigencia"));
             String titulo = request.getParameter("txtTitulo");
             int estado=1;
@@ -42,76 +57,7 @@ public class AltaOferta extends HttpServlet {
             
             RequestDispatcher rd = request.getRequestDispatcher("/ListadoOferta");
             rd.forward(request, response);
-            
-            
-            
-            
-            
-//            
-//            String fechaInicio = request.getParameter("fechaInicio");
-//        int id = Integer.parseInt(request.getParameter("cboRubro"));
-//        String nombre = request.getParameter("txtNombre");
-//        int estado = 1;
-//        
-//        Rubro r =  gestor.obtenerRubroUpdate(id);
-//        Comercio c = new Comercio(0,fechaInicio,r, estado, nombre);
-//       
-//        gestor.insertarNuevoComercio(c);
-//     
-//        RequestDispatcher rd = request.getRequestDispatcher("/listadoComercios.jsp");
-//        rd.forward(request, response);
-//            
-            
-            
-            
-            
-            
-            
-            
-            
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            processRequest(request, response);
-       
-       
-         
-        
-        
-        
-//        GestorBD gestor = new GestorBD();
-//        ArrayList<DTOComerciosActivos> listadoComercio = gestor.obtenerComerciosActivos();
-//
-//        request.setAttribute("listadoComercio", listadoComercio);
-//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/registroOferta.jsp");
-//        rd.forward(request, response);
-
-
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       processRequest(request, response);
-        
-        
-//        GestorBD gestor = new GestorBD();
-//        int cantidad = Integer.parseInt(request.getParameter("txtCantidad"));
-//            double precio = Double.parseDouble(request.getParameter("txtPrecio"));
-//            String fechaInicioOferta = request.getParameter("fechaInicio");
-//            int diasVigencia = Integer.parseInt(request.getParameter("txtDiasVigencia"));
-//            String titulo = request.getParameter("txtTitulo");
-//            String comercio = request.getParameter("txtComercio");
-//            int estado=1;
-//
-//            gestor.insertarNuevaOferta(new Oferta(0,cantidad, precio, fechaInicioOferta, diasVigencia, titulo,estado ,comercio));
-//            
-//            RequestDispatcher rd = request.getRequestDispatcher("/ListadoOferta");
-//            rd.forward(request, response);
-        
+  
 
     }
 

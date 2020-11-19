@@ -44,7 +44,7 @@
                                       <td>${oferta.estado}</td>
                                     <td>${oferta.comercio.id}</td>
 
-                                    <td>
+                                    <td> 
                                         <a href="EditarOferta?estado=3&id=${oferta.id} "class="btn btn-success" role="button">Editar</a>
                                     </td>
                                     <td>                                          
