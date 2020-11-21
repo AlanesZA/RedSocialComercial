@@ -34,7 +34,8 @@
                         <td>${comentario.nombre}</td>
                         <td>${comentario.descripcion}</td>  
                         <td> <c:forEach items="${GBD.obtenerComercios()}" var="comercio">          
-                                <c:if test="${comentario.comercio.id == comercio.id}">${comercio.comercio}</c:if> 
+                                <c:if test="${comentario.comercio.id == comercio.id}">${comercio.nombre}</c:if> 
+                                
                             </c:forEach>
                         </td>
 

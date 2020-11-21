@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home - Comercios - Rubros</title>
+        <title>Home - Comercios - Comentarios</title>
 
         <jsp:include page="includes.jsp"></jsp:include>
 
@@ -86,8 +86,6 @@
                                     <a href="EditarComercio?estado=3&id=${comentario.id}" class="btn btn-success" role="button" >Listado de ofertas</a>
 
                                 </td>
-
-
                             </tr>
                         </c:forEach>
                     </tbody>

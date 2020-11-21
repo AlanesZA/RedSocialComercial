@@ -4,7 +4,7 @@ public class Comentario {
 
     private int idComentario;
     private String descripcion;
-    private Comercio Comercio;
+    private Comercio comercio;
     private int estado;
     private int valoracion;
     private String nombre;
@@ -17,10 +17,10 @@ public class Comentario {
         this.nombre = nombre;
     }
 
-    public Comentario(int idComentario, String descripcion, Comercio Comercio, int estado, int valoracion, String nombre) {
+    public Comentario(int idComentario, String descripcion, Comercio comercio, int estado, int valoracion, String nombre) {
         this.idComentario = idComentario;
         this.descripcion = descripcion;
-        this.Comercio = Comercio;
+        this.comercio = comercio;
         this.estado = estado;
         this.valoracion = valoracion;
         this.nombre = nombre;
@@ -44,11 +44,11 @@ public class Comentario {
     }
 
     public Comercio getComercio() {
-        return Comercio;
+        return comercio;
     }
 
-    public void setComercio(Comercio Comercio) {
-        this.Comercio = Comercio;
+    public void setComercio(Comercio comercio) {
+        this.comercio = comercio;
     }
 
     public int getEstado() {
@@ -72,7 +72,7 @@ public class Comentario {
 
     @Override
     public String toString() {
-        return "Comentario{" + "idComentario=" + idComentario + ", descripcion=" + descripcion + ", Comercio=" + Comercio + ", estado=" + estado + ", valoracion=" + valoracion + ", nombre=" + nombre + '}';
+        return "Comentario{" + "idComentario=" + idComentario + ", descripcion=" + descripcion + ", Comercio=" + comercio + ", estado=" + estado + ", valoracion=" + valoracion + ", nombre=" + nombre + '}';
     }
 
    

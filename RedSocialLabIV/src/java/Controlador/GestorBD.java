@@ -454,19 +454,19 @@ public class GestorBD {
         try {
             abrirConexion();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select  c.idComentario, c.nombre, c.descripcion,co.nombre, c.valoracion\n"
+            ResultSet rs = st.executeQuery("select  c.idComentario, c.nombre, c.descripcion,co.idComercio, c.valoracion\n"
                     + "from Comentarios c, Comercios co\n"
                     + "where c.idComercio = co.idComercio");
             while (rs.next()) {
-                int id = rs.getInt("idComentario");
+                int idc = rs.getInt("idComentario");
+                String nom = rs.getString("nombre");
                 String descripcion = rs.getString("descripcion");
-                String comercio = rs.getString("nombre");
-                int valoracion = rs.getInt("valoracion");
-                String nombre = rs.getString("nombre");
-
+                 int valoracion = rs.getInt("valoracion");
+                int id = rs.getInt("idComercio");
+               
                 Comercio co = new Comercio();
-                co.setNombre(comercio);
-                Comentario com = new Comentario(id, descripcion, co, 1, valoracion, nombre);
+                co.setId(id);
+                Comentario com = new Comentario(idc, descripcion, co, 1, valoracion, nom);
 
                 lista.add(com);
             }
