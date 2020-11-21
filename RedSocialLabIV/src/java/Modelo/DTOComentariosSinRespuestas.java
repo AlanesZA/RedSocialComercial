@@ -49,4 +49,11 @@ public class DTOComentariosSinRespuestas {
     public DTOComentariosSinRespuestas() {
     }
 
+    @Override
+    public String toString() {
+        return "DTOComentariosSinRespuestas{" + "descripcion=" + descripcion + ", Comercio=" + Comercio + ", estado=" + estado + ", valoracion=" + valoracion + '}';
+    }
+    
+    
+
 }

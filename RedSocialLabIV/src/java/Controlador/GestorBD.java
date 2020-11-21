@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.Comentario;
 import Modelo.Comercio;
 import Modelo.Oferta;
 import Modelo.Rubro;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class GestorBD {
 
@@ -213,11 +215,11 @@ public class GestorBD {
             abrirConexion();
             PreparedStatement ps = con.prepareStatement("UPDATE Comercios SET fecha_inicio = ?, idRubro = ?, estado = 1, nombre = ? where idComercio=? ");
             ps.clearParameters();
-            
+
             ps.setString(1, c.getFechainicio());
             ps.setInt(2, c.getRubro().getId());
             ps.setString(3, c.getNombre());
-             ps.setInt(4, c.getId());
+            ps.setInt(4, c.getId());
 
             ps.execute();
         } catch (SQLException e) {
@@ -291,15 +293,15 @@ public class GestorBD {
             cerrarConexion();
         }
     }
-   
+
     public ArrayList<Oferta> obtenerOferta() {
         ArrayList<Oferta> lista = new ArrayList<>();
         try {
             abrirConexion();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select o.idOferta,o.cantidad,o.precio_oferta, o.fecha_inicio_oferta, o.dias_vigencia,o.titulo, o.estado, c.idComercio\n" +
-"                    from Ofertas o, Comercios c\n" +
-"                     where o.idComercio = c.idComercio");
+            ResultSet rs = st.executeQuery("select o.idOferta,o.cantidad,o.precio_oferta, o.fecha_inicio_oferta, o.dias_vigencia,o.titulo, o.estado, c.idComercio\n"
+                    + "                    from Ofertas o, Comercios c\n"
+                    + "                     where o.idComercio = c.idComercio");
             while (rs.next()) {
                 int id = rs.getInt("idOferta");
                 int cantidad = rs.getInt("cantidad");
@@ -309,7 +311,7 @@ public class GestorBD {
                 String titulo = rs.getString("titulo");
                 int estado = rs.getInt("estado");
                 int idComercio = rs.getInt("idComercio");
-                
+
                 Comercio co = new Comercio();
                 co.setId(idComercio);
                 Oferta o = new Oferta(id, cantidad, po, fio, dias_vigencia, titulo, estado, co);
@@ -365,7 +367,7 @@ public class GestorBD {
                 String titulo = rs.getString("titulo");
                 int estado = rs.getInt("estado");
                 int idComercio = rs.getInt("idComercio");
-                
+
                 Comercio com = obtenerComercioUpdate(idComercio);
                 o = new Oferta(id, cantidad, po, fio, dv, titulo, estado, com);
                 o.setId(id);
@@ -378,8 +380,7 @@ public class GestorBD {
         }
         return o;
     }
-    
-    
+
     public void bajaOferta(int idOferta) {
         try {
             abrirConexion();
@@ -391,6 +392,106 @@ public class GestorBD {
             e.printStackTrace();
         } finally {
             cerrarConexion();
+        }
+    }
+
+    //COMENTARIOS 
+    public void insertarNuevoComentario(Comentario co) {
+        try {
+            abrirConexion();
+            PreparedStatement ps = con.prepareStatement("INSERT  INTO Comentarios VALUES (?,?,?,?,?,?)");
+            ps.clearParameters();
+            ps.setString(1, co.getDescripcion());
+            ps.setInt(2, co.getComercio().getId());
+            ps.setInt(3, co.getEstado());
+            ps.setInt(4, co.getValoracion());
+            ps.setString(5, co.getNombre());
+
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+    }
+
+    public ArrayList<Comentario> obtenerComentarios(int idCome) {
+        ArrayList<Comentario> lista = new ArrayList<Comentario>();
+        try {
+            abrirConexion();
+            PreparedStatement ps = con.prepareStatement("select * from Comentarios where idComentario= ?");
+            ps.setInt(1, idCome);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int idComentario = rs.getInt("idComentario");
+                String descripcion = rs.getString("descripcion");
+                int idComercio = rs.getInt("idComercio");
+                int estado = rs.getInt("estado"); // estado 1 = repsondido
+                int valoracion = rs.getInt("valoracion");
+                String nombre = rs.getString("nombre");
+
+                Comercio com = obtenerComercioUpdate(idComercio);
+                
+                Comentario co = new Comentario(idComentario, descripcion, com, estado, valoracion, nombre);
+                co.setNombre(nombre);
+                lista.add(co);
+
+            }
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+        return lista;
+
+    }
+
+    public ArrayList<Comentario> obtenerComentario() {
+        ArrayList<Comentario> lista = new ArrayList<>();
+        try {
+            abrirConexion();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select  c.idComentario, c.nombre, c.descripcion,co.nombre, c.valoracion\n"
+                    + "from Comentarios c, Comercios co\n"
+                    + "where c.idComercio = co.idComercio");
+            while (rs.next()) {
+                int id = rs.getInt("idComentario");
+                String descripcion = rs.getString("descripcion");
+                String comercio = rs.getString("nombre");
+                int valoracion = rs.getInt("valoracion");
+                String nombre = rs.getString("nombre");
+
+                Comercio co = new Comercio();
+                co.setNombre(comercio);
+                Comentario com = new Comentario(id, descripcion, co, 1, valoracion, nombre);
+
+                lista.add(com);
+            }
+            rs.close();
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+
+        return lista;
+    }
+
+    public void bajaComentario(int idComentario) {
+        try {
+            abrirConexion();
+            PreparedStatement ps = con.prepareStatement("UPDATE Comentarios SET estado = 0 where idComentario = ?");
+            ps.clearParameters();
+            ps.setInt(1, idComentario);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            cerrarConexion();
+
         }
     }
 

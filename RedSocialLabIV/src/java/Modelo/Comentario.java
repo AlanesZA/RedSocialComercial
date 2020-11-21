@@ -7,14 +7,25 @@ public class Comentario {
     private Comercio Comercio;
     private int estado;
     private int valoracion;
+    private String nombre;
 
-    public Comentario(int idComentario, String descripcion, Comercio Comercio, int estado, int valoracion) {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Comentario(int idComentario, String descripcion, Comercio Comercio, int estado, int valoracion, String nombre) {
         this.idComentario = idComentario;
         this.descripcion = descripcion;
         this.Comercio = Comercio;
         this.estado = estado;
         this.valoracion = valoracion;
+        this.nombre = nombre;
     }
+
 
     public int getIdComentario() {
         return idComentario;
@@ -61,8 +72,9 @@ public class Comentario {
 
     @Override
     public String toString() {
-        return "Comentario{" + "idComentario=" + idComentario + ", descripcion=" + descripcion + ", Comercio=" + Comercio + ", estado=" + estado + ", valoracion=" + valoracion + '}';
+        return "Comentario{" + "idComentario=" + idComentario + ", descripcion=" + descripcion + ", Comercio=" + Comercio + ", estado=" + estado + ", valoracion=" + valoracion + ", nombre=" + nombre + '}';
     }
 
+   
    
 }

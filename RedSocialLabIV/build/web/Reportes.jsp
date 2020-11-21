@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<jsp:useBean id="GBD" class="Controlador.GestorBD" scope="session"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,7 +34,7 @@
                                     <div class="input-group-prepend">
                                       <span class="input-group-text" id="basic-addon1">Valoracion general</span>
                                     </div>
-                                    <button type="button" class="btn btn-secondary btn-lg" disabled > ${ ValoracionGeneral } </button>
+                                      <button type="button" class="btn btn-secondary btn-lg" disabled > ${ ValoracionGeneral} </button>
                                   </div>
                                 </div>
                               </div>
@@ -61,12 +60,13 @@
                                         </tr>
                                     </thead>            
                                     <tbody>
-                                        <c:forEach items="${ComentariosSinRespuesta}" var="r">
+
+                                        <c:forEach items="${ComentariosSinRespuesta}" var="c">
                                             <tr class="text-center">
-                                                <td>${ r.getValoracion() }</td>
-                                                <td>${ r.getDescripcion()}</td>
-                                             
-                                                <td>${ r.getComercio() }</td>
+                                                <td>${ c.valoracion}</td>
+                                                <td>${ c.descripcion}</td>
+                                                <td>${ c.Comercio}</td>
+                                                
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -95,8 +95,8 @@
                                     <tbody>
                                         <c:forEach items="${ValoracionxComercio}" var="r">
                                             <tr class="text-center">
-                                                <td>${ r.getComercio() }</td>
-                                                <td>${ r.getPromedio() }</td>
+                                                <td>${ r.Comercio}</td>
+                                                <td>${ r.Promedio}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -125,8 +125,8 @@
                                     <tbody>
                                         <c:forEach items="${ComerciosxCantComentarios}" var="r">
                                             <tr class="text-center">
-                                                <td>${ r.getComercio() }</td>
-                                                <td>${ r.getCant_Comentarios() }</td>
+                                                <td>${ r.Comercio }</td>
+                                                <td>${ r.Cant_Comentarios }</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

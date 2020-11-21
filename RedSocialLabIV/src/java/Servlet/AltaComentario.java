@@ -1,10 +1,8 @@
 package Servlet;
 
-import Controlador.GComentarios;
 import Controlador.GestorBD;
 import Modelo.*;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +19,7 @@ public class AltaComentario extends HttpServlet {
         GestorBD c = new GestorBD();
         ArrayList<Comercio> co = c.obtenerComercios();
         request.setAttribute("listaComercios", co);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/AltaComentarios.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/AdmComentarios.jsp");
         rd.forward(request, response);
     }
 
@@ -31,7 +29,7 @@ public class AltaComentario extends HttpServlet {
         GestorBD c = new GestorBD();
         ArrayList<Comercio> co = c.obtenerComercios();
         request.setAttribute("listaComercios", co);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/AltaComentarios.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/AdmComentarios.jsp");
         rd.forward(request, response);
     }
 
@@ -39,18 +37,18 @@ public class AltaComentario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GComentarios c = new GComentarios();
-        String titulo = request.getParameter("txtTitulo");
-        String comentario = request.getParameter("txtComentario");
-        int Valoracion = Integer.parseInt(request.getParameter("estrellas"));
+        GestorBD c = new GestorBD();
+        String descripcion = request.getParameter("txtDescripcion");
+        int valoracion = Integer.parseInt(request.getParameter("estrellas"));
         int idcomercio = Integer.parseInt(request.getParameter("cboComercio"));
-
+        String nombre = request.getParameter("txtNombre");
+        
         Comercio co = c.obtenerComercioUpdate(idcomercio);
-        Comentario com = new Comentario(0, titulo, comentario, Valoracion, co);
+        Comentario com = new Comentario(0, descripcion, co,valoracion,1,nombre);
 
         
-        c.RegistrarComentario(com);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListaCometario.jsp");
+        c.insertarNuevoComentario(com);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListaComentario.jsp");
         rd.forward(request, response);
     }
 

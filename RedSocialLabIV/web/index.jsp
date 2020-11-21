@@ -1,5 +1,3 @@
-<%-- 
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,7 +28,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Comercios</a>
+                        <a class="navbar-brand" href="homeUsuario.jsp">Comercios</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
