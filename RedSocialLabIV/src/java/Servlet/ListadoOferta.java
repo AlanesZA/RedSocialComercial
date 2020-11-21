@@ -1,5 +1,3 @@
-/*
- */
 package Servlet;
 
 import Controlador.GestorBD;
@@ -12,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 @WebServlet(name = "ListadoOferta", urlPatterns = {"/ListadoOferta"})
 public class ListadoOferta extends HttpServlet {
@@ -37,12 +36,12 @@ public class ListadoOferta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-  processRequest(request, response);
+        processRequest(request, response);
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

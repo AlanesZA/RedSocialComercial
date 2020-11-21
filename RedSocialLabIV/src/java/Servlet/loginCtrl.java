@@ -26,6 +26,7 @@ public class loginCtrl extends HttpServlet {
             String pass = request.getParameter("txtPassword");
            
             if(usu.length() != 0 && pass.length() != 0) {
+                //ACA NO ENTIENDO
                     if(usu.compareToIgnoreCase("sa") == 0 && pass.compareToIgnoreCase("2020") == 0 ) {
                         getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
                     } else {

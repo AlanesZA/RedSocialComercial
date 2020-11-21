@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import java.io.IOException;
@@ -15,10 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-/**
- *
- * @author Usuario
- */
 @WebServlet(name = "Subida", urlPatterns = {"/Subida"})
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,
@@ -28,21 +19,11 @@ import javax.servlet.http.Part;
 
 public class Subida extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
   
     }
 
- 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,15 +43,13 @@ public class Subida extends HttpServlet {
             if (!filename.isEmpty()) {
                 part.write(apellido + filename);
             }
-        }
-        
-        //Forward o redirect
+        }        
     }
     
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
     private String getFilename(Part part) {
          for (String content : part.getHeader("content-disposition").split(";")) {
