@@ -48,7 +48,7 @@
 
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="Reportes.jsp">Reportes</a></li>
+                        <li><a href="Reportes">Reportes</a></li>
                   
                     </ul>
                 </li>
