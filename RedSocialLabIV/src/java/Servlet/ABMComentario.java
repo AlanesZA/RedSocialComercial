@@ -45,24 +45,20 @@ public class ABMComentario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-        if (request.getSession().getAttribute("USER") != null) {
-            //Codificar correctamente los caracteres enviados a la BD
-            request.setCharacterEncoding("UTF-8");
-
-            //Tomar parámetros del form y crear objeto Curso
+     
             String nombre = request.getParameter("txtNombre");
-            String descripcion = request.getParameter("descripcion");
-            float costo = Float.parseFloat(request.getParameter("costo"));            
-            String imagenUrl = request.getParameter("imagenUrl");
-            boolean activo = Boolean.parseBoolean(request.getParameter("activo"));            
-            int idCurso = Integer.parseInt(request.getParameter("idCurso"));
-
-            Curso curso = new Curso(idCurso, nombre, descripcion, costo, imagenUrl, activo);
-            GestorCursos gestor = new GestorCursos();
+            String descripcion = request.getParameter("texareaComentario");
+            int valoracion = Integer.parseInt(request.getParameter("idValoracion"));            
+            
+            Comercio co = new Comercio();
+            co.setNombre(co);
+            Comentario comentario = new Comentario(0, descripcion, co, 1, valoracion, nombre);
+            GestorBD gestor = new GestorBD();
 
             //Chequear si viene desde la opción Alta o Editar
-            if (idCurso == 0) {
+            if (id
+                    
+                    == 0) {
                 gestor.agregarCurso(curso);
             } else {                
                 gestor.modificarCurso(curso);
@@ -71,12 +67,8 @@ public class ABMComentario extends HttpServlet {
             //Redirigir al Listado por GET
             response.sendRedirect(getServletContext().getContextPath() + "/ListadoCursos");
         
-        } else {            
-            //Redirigir al Login por GET
-            request.getSession().setAttribute("mensajeError", "Error. Sesión no iniciada");
-            response.sendRedirect(getServletContext().getContextPath() + "/Login");
-            
-        }
+           
+        
     }
 
     

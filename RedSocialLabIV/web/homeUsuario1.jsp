@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">                            
                     <label for="comentario" class="col-form-label">Comentario:</label>
-                    <textarea class="form-control" aria-label="Comentario"></textarea>
+                    <textarea class="form-control" aria-label="texareaComentario"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="comercio" class="col-form-label">Valoración:</label>                
