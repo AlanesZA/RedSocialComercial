@@ -93,9 +93,9 @@ public class DTOOfertaxComercio {
 
     @Override
     public String toString() {
-        return "DTOOfertaxComercio{" + "cantidad=" + cantidad + ", fecha_inicio=" + fecha_inicio + ", precio_oferta=" + precio_oferta + ", fecha_inicio_oferta=" + fecha_inicio_oferta + ", dias_vigencia=" + dias_vigencia + ", titulo=" + titulo + '}';
+        return "DTOOfertaxComercio{" + "cantidad=" + cantidad + ", fecha_inicio=" + fecha_inicio + ", precio_oferta=" + precio_oferta + ", fecha_inicio_oferta=" + fecha_inicio_oferta + ", dias_vigencia=" + dias_vigencia + ", titulo=" + titulo + ", comercio=" + comercio + ", rubro=" + rubro + '}';
     }
-    
+
     
     
 }

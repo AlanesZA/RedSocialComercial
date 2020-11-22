@@ -3,7 +3,6 @@ package Servlet;
 import Controlador.GestorBD;
 import Modelo.DTOOfertaxComercio;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,11 +20,11 @@ public class UsuarioNav extends HttpServlet {
         
         
         GestorBD gestor = new GestorBD();
-        int idComercio = Integer.parseInt(request.getParameter("id"));
-        ArrayList<DTOOfertaxComercio> oferta = gestor.obtenerOfertaxComercio(idComercio);
-        request.setAttribute("lista", oferta);
-        
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/homeUsuarioComentarios.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        ArrayList<DTOOfertaxComercio> oferta = gestor.obtenerOfertaxComercio(id);
+        request.getSession().setAttribute("lista", oferta);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/homeUsuario1.jsp");
         rd.forward(request, response);
         
     }

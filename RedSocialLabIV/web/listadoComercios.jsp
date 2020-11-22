@@ -13,33 +13,27 @@
         <body >
         <jsp:include page="header.jsp"></jsp:include>
 
-
             <div class="text-center">
                 <h1>Listado de Comercios</h1>
-            </div> <br/>
-
+            </div> 
+            <br/>
             <div class="container text-center">
                 <div class="row">
                     <div class="col col-md-12">
-
                         <table class="table">
-
                             <thead>
                                 <tr>
-
                                     <th  class="text-center">Fecha Inicio</th>
                                     <th  class="text-center">Rubro</th>
                                     <th  class="text-center">Nombre</th>
                                     <th  class="text-center">Estado</th>
                                     <th  class="text-center">Modificar</th>
                                     <th  class="text-center">Eliminar</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="comercio" items="${GBD.obtenerComercios()}">
                                 <tr>
-
                                     <td>${comercio.fechainicio}</td>
                                     <td> <c:forEach items="${GBD.obtenerRubro()}" var="rubro">          
                                             <c:if test="${comercio.rubro.id == rubro.id}">${rubro.rubro}</c:if> 
@@ -54,12 +48,10 @@
                                     </td>
                                     <td>
                                         <a href="EditarComercio?estado=3&id=${comercio.id}" class="btn btn-success" role="button" >Modificar</a>
-
                                     </td>
                                     <td>                                          
                                         <a href="EditarComercio?estado=5&id=${comercio.id}" class="btn btn-danger" role="button" >Eliminar</a>
                                     </td>
-
                                 </tr>
                             </c:forEach>
                         </tbody> 
