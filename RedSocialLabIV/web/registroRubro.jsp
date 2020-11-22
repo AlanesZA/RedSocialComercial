@@ -39,19 +39,19 @@
 
                                 <div class="form-group col-md-12">
                                 </div>
-                                <div class="form-group pull-right">
+                                <div class="form-group justify-content-end">
                                     <input type="submit" href="listadoRubros" class="btn btn-primary form-control" value="Guardar rubro"/>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <a href="listadoRubros.jsp" class="btn btn-primary form-control" role="button">Rubros Registrados</a>
+                                    <br>
+                                    <br>
+                                    <a href="home.jsp" class="btn btn-primary form-control" role="button">Volver al Menu</a>
                                 </div> 
 
-                                <a href="listadoRubros.jsp" class="btn btn-primary form-control" role="button">Rubros Registrados</a>
-                                <br>
-                                <br>
-   
-                                <a href="home.jsp" class="btn btn-primary form-control" role="button">Volver al Menu</a>
-
-
-
                             </form>
+                            
                         </div>
                     </div>
                 </div>

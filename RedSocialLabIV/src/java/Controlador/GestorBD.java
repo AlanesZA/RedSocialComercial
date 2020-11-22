@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.Comentario;
 import Modelo.Comercio;
+import Modelo.DTOOfertaxComercio;
 import Modelo.Oferta;
 import Modelo.Rubro;
 import java.sql.Connection;
@@ -432,7 +433,7 @@ public class GestorBD {
                 String nombre = rs.getString("nombre");
 
                 Comercio com = obtenerComercioUpdate(idComercio);
-                
+
                 Comentario co = new Comentario(idComentario, descripcion, com, estado, valoracion, nombre);
                 co.setNombre(nombre);
                 lista.add(co);
@@ -461,9 +462,9 @@ public class GestorBD {
                 int idc = rs.getInt("idComentario");
                 String nom = rs.getString("nombre");
                 String descripcion = rs.getString("descripcion");
-                 int valoracion = rs.getInt("valoracion");
+                int valoracion = rs.getInt("valoracion");
                 int id = rs.getInt("idComercio");
-               
+
                 Comercio co = new Comercio();
                 co.setId(id);
                 Comentario com = new Comentario(idc, descripcion, co, 1, valoracion, nom);
@@ -493,6 +494,43 @@ public class GestorBD {
             cerrarConexion();
 
         }
+    }
+
+    public ArrayList<DTOOfertaxComercio> obtenerOfertaxComercio(int idComercio) {
+        ArrayList<DTOOfertaxComercio> lista = new ArrayList<>();
+        try {
+            abrirConexion();
+            PreparedStatement ps = con.prepareStatement("select o.cantidad, c.fecha_inicio,o.precio_oferta,o.fecha_inicio_oferta,o.dias_vigencia,o.titulo,\n"
+                    + " c.nombre, r.rubro\n"
+                    + "from Comercios c, Rubros r, Ofertas o\n"
+                    + "where c.idComercio = o.idComercio \n"
+                    + "and c.idRubro = r.idRubro\n"
+                    + "and c.idComercio = ?");
+
+            ps.setInt(1, idComercio);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int cantidad = rs.getInt("cantidad");
+                String fecha_inicio = rs.getString("fecha_inicio");
+                String precio_oferta = rs.getString("precio_oferta");
+                String fecha_inicio_oferta = rs.getString("fecha_inicio_oferta");
+                int dias_vigencia = rs.getInt("dias_vigencia");
+                String titulo = rs.getString("titulo");
+                String comercio = rs.getString("nombre");
+                String rubro = rs.getString("rubro");
+
+                DTOOfertaxComercio DtoOC = new DTOOfertaxComercio(cantidad, fecha_inicio, precio_oferta, fecha_inicio_oferta, dias_vigencia, titulo,comercio,rubro );
+
+                lista.add(DtoOC);
+            }
+            rs.close();
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+
+        return lista;
     }
 
 }

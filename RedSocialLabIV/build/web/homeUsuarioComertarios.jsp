@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <jsp:useBean id="GBD" class="Controlador.GestorBD" scope="session"/>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +15,7 @@
         <jsp:include page="headerC.jsp"></jsp:include>
 
             <div class=" text-center ">
-                <h1>Ofertas</h1>
+                <h1>Ofertas </h1>
             </div>
             <br>
 
@@ -23,31 +24,34 @@
                     <thead>
                         <tr class="text-center">
                             <th>Cantidad</th>
+                            <th>Fecha Inicio</th>
                             <th>Precio Oferta</th>
                             <th>Fecha Inic. Oferta</th>
                             <th>Dias Vigencia</th>
                             <th>Titulo</th>
                             <th>Comercio</th>
+                            <th>Rubro</th>
                         </tr>
                     </thead>            
                     <tbody>
-                    <c:forEach var="oferta" items="${GBD.obtenerOferta()}">
+
+
+                    <c:forEach var="lista" items="${GBD.obtenerOfertaxComercio(id)}">
                         <tr>
                             <td>${oferta.cantidad}</td>
-                            <td>${oferta.precio}</td>
-                            <td>${oferta.fechaInicioOferta}</td>
-                            <td>${oferta.diasVigencia}</td>
+                            <td>${oferta.fecha_inicio}</td>
+                            <td>${oferta.precio_oferta}</td>
+                            <td>${oferta.fecha_inicio_oferta}</td>
+                            <td>${oferta.dias_vigencia}</td>
                             <td>${oferta.titulo}</td>
-                            <td> <c:forEach items="${GBD.obtenerComercios()}" var="comercio">          
-                                    <c:if test="${oferta.comercio.id == comercio.id}">${comercio.nombre}</c:if> 
-                                </c:forEach>
-                            </td>
+                            <td>${oferta.comercio}</td>
+                            <td>${oferta.rubro}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
 
-                <hr/>
+            <hr/>
             <br>
             <div class="text-center">
                 <h1>Comentarios</h1>
@@ -57,13 +61,11 @@
                 <div class="form-group">                            
                     <label for="comentario" class="col-form-label">Nombre:</label>
                     <input class="form-control" name="txtNombre" placeholder="">
-                    <div class="validate"></div>
                 </div>
 
                 <div class="form-group">                            
                     <label for="comentario" class="col-form-label">Comentario:</label>
                     <textarea class="form-control" aria-label="Comentario"></textarea>
-                    <div class="validate"></div>
                 </div>
 
 
@@ -107,6 +109,9 @@
                     </tr>
                 </thead>            
                 <tbody>
+
+
+
                     <c:forEach var="comentario" items="${GBD.obtenerComentario()}">
                         <tr>
                             <td>${comentario.nombre}</td>
@@ -120,14 +125,10 @@
 
                         </tr>
                     </c:forEach>
+
                 </tbody>
             </table>
         </div>
-
-
-
-
-
 
         <div class="container shadow-sm p-3 mb-5 bg-white rounded" data-aos="fade-in">
             <div class="row justify-content-center text-center">
@@ -147,9 +148,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
         <jsp:include page="footer.jsp"></jsp:include>
 

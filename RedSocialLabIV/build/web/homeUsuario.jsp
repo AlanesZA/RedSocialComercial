@@ -41,7 +41,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="homeUsuarioComertarios.jsp" class="btn btn-success" role="button" >Mostrar</a>
+                                        <a href="UsuarioNav?id=${comercio.id}" class="btn btn-success" role="button" >Mostrar</a>
                                     </td>
 
                                 </tr>
