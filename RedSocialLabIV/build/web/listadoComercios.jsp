@@ -14,7 +14,11 @@
         <jsp:include page="header.jsp"></jsp:include>
 
 
-            <div class="container">
+            <div class="text-center">
+                <h1>Listado de Comercios</h1>
+            </div> <br/>
+
+            <div class="container text-center">
                 <div class="row">
                     <div class="col col-md-12">
 
@@ -23,12 +27,12 @@
                             <thead>
                                 <tr>
 
-                                    <th>Fecha Inicio</th>
-                                    <th>Rubro</th>
-                                    <th>Nombre</th>
-                                    <th>Estado</th>
-                                    <th>Modificar</th>
-                                    <th>Eliminar</th>
+                                    <th  class="text-center">Fecha Inicio</th>
+                                    <th  class="text-center">Rubro</th>
+                                    <th  class="text-center">Nombre</th>
+                                    <th  class="text-center">Estado</th>
+                                    <th  class="text-center">Modificar</th>
+                                    <th  class="text-center">Eliminar</th>
 
                                 </tr>
                             </thead>
@@ -42,12 +46,12 @@
                                         </c:forEach>
                                     </td>
                                     <td>${comercio.nombre}</td>
-                                    <th>
+                                    <td class="text-center">
                                         <c:choose>
                                             <c:when test="${comercio.estado == 1}">Activo</c:when>
                                             <c:otherwise>No Activo</c:otherwise>
                                         </c:choose> 
-                                    </th>
+                                    </td>
                                     <td>
                                         <a href="EditarComercio?estado=3&id=${comercio.id}" class="btn btn-success" role="button" >Modificar</a>
 
@@ -56,16 +60,16 @@
                                         <a href="EditarComercio?estado=5&id=${comercio.id}" class="btn btn-danger" role="button" >Eliminar</a>
                                     </td>
 
-
                                 </tr>
                             </c:forEach>
                         </tbody> 
                     </table> 
-                    <a class="btn btn-primary" href="registroComercio.jsp" role="button">Volver al alta Comercio</a>
+                    <a class="btn btn-primary form-control" href="registroComercio.jsp" role="button">Volver al alta Comercio</a>
                 </div>
             </div>
+        </div>
 
 
-            <jsp:include page="footer.jsp"></jsp:include>
+        <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>
