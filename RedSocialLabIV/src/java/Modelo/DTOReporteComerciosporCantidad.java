@@ -1,29 +1,29 @@
 package Modelo;
 
 public class DTOReporteComerciosporCantidad {
-    public String Comercio;
-    public int Cant_Comentarios;
+    public String comercio;
+    public int cantComentarios;
 
    
     public String getComercio() {
-        return Comercio;
+        return comercio;
     }
 
-    public void setComercio(String Comercio) {
-        this.Comercio = Comercio;
+    public void setComercio(String comercio) {
+        this.comercio = comercio;
     }
 
-    public int getCant_Comentarios() {
-        return Cant_Comentarios;
+    public int getCantComentarios() {
+        return cantComentarios;
     }
 
-    public void setCant_Comentarios(int Cant_Comentarios) {
-        this.Cant_Comentarios = Cant_Comentarios;
+    public void setCant_Comentarios(int cantComentarios) {
+        this.cantComentarios = cantComentarios;
     }
 
-    public DTOReporteComerciosporCantidad(String Comercio, int Cant_Comentarios) {
-        this.Comercio = Comercio;
-        this.Cant_Comentarios = Cant_Comentarios;
+    public DTOReporteComerciosporCantidad(String comercio, int cantComentarios) {
+        this.comercio = comercio;
+        this.cantComentarios = cantComentarios;
     }
     
     

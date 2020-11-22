@@ -48,9 +48,9 @@ public class GestorReportes {
                 String descripcion = rs.getString("descripcion");
                 int valoracion = rs.getInt("valoracion");
                 int estado = rs.getInt("estado");
-                String Comercio = rs.getString("nombre");
+                String comercio = rs.getString("nombre");
 
-                DTOComentariosSinRespuestas r = new DTOComentariosSinRespuestas(descripcion, Comercio, valoracion, estado);
+                DTOComentariosSinRespuestas r = new DTOComentariosSinRespuestas(descripcion, comercio, valoracion, estado);
                 lista.add(r);
             }
             rs.close();
@@ -75,10 +75,10 @@ public class GestorReportes {
                     + "    order by 'Cantidad' desc");
 
             while (rs.next()) {
-                String Comercio = rs.getString("nombre");
-                int Cantidad_Comentarios = rs.getInt("Cantidad");
+                String comercio = rs.getString("nombre");
+                int cantComentarios = rs.getInt("Cantidad");
 
-                DTOReporteComerciosporCantidad r = new DTOReporteComerciosporCantidad(Comercio, Cantidad_Comentarios);
+                DTOReporteComerciosporCantidad r = new DTOReporteComerciosporCantidad(comercio, cantComentarios);
                 lista.add(r);
             }
             rs.close();
@@ -101,10 +101,10 @@ public class GestorReportes {
                     + "  Group by c.idComercio, c.nombre");
 
             while (rs.next()) {
-                String Comercio = rs.getString("nombre");
-                float Promedio = rs.getInt("Promedio valoracion");
+                String comercio = rs.getString("nombre");
+                float promedio = rs.getInt("Promedio valoracion");
 
-                DTOPromedioValoracionxComercio r = new DTOPromedioValoracionxComercio(Comercio, Promedio);
+                DTOPromedioValoracionxComercio r = new DTOPromedioValoracionxComercio(comercio, promedio);
                 lista.add(r);
             }
             rs.close();

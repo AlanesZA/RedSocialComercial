@@ -65,7 +65,7 @@
                                             <tr class="text-center">
                                                 <td>${ c.valoracion}</td>
                                                 <td>${ c.descripcion}</td>
-                                                <td>${ c.Comercio}</td>
+                                                <td>${ c.comercio}</td>
                                                 
                                             </tr>
                                         </c:forEach>
@@ -95,8 +95,8 @@
                                     <tbody>
                                         <c:forEach items="${ValoracionxComercio}" var="r">
                                             <tr class="text-center">
-                                                <td>${ r.Comercio}</td>
-                                                <td>${ r.Promedio}</td>
+                                                <td>${ r.comercio}</td>
+                                                <td>${ r.promedio}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -125,8 +125,8 @@
                                     <tbody>
                                         <c:forEach items="${ComerciosxCantComentarios}" var="r">
                                             <tr class="text-center">
-                                                <td>${ r.Comercio }</td>
-                                                <td>${ r.Cant_Comentarios }</td>
+                                                <td>${ r.comercio }</td>
+                                                <td>${ r.cantComentarios }</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

@@ -1,28 +1,28 @@
 package Modelo;
 
 public class DTOPromedioValoracionxComercio {
-    public String Comercio;
-    public float Promedio;
+    public String comercio;
+    public float promedio;
 
     public String getComercio() {
-        return Comercio;
+        return comercio;
     }
 
-    public void setComercio(String Comercio) {
-        this.Comercio = Comercio;
+    public void setComercio(String comercio) {
+        this.comercio = comercio;
     }
 
     public float getPromedio() {
-        return Promedio;
+        return promedio;
     }
 
-    public void setPromedio(float Promedio) {
-        this.Promedio = Promedio;
+    public void setPromedio(float promedio) {
+        this.promedio = promedio;
     }
 
-    public DTOPromedioValoracionxComercio(String Comercio, float Promedio) {
-        this.Comercio = Comercio;
-        this.Promedio = Promedio;
+    public DTOPromedioValoracionxComercio(String comercio, float promedio) {
+        this.comercio = comercio;
+        this.promedio = promedio;
     }
     
     

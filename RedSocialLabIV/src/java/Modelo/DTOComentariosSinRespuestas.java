@@ -3,13 +3,13 @@ package Modelo;
 public class DTOComentariosSinRespuestas {
 
     public String descripcion;
-    public String Comercio;
+    public String comercio;
     public int estado;
     public int valoracion;
 
-    public DTOComentariosSinRespuestas(String descripcion, String Comercio, int estado, int valoracion) {
+    public DTOComentariosSinRespuestas(String descripcion, String comercio, int estado, int valoracion) {
         this.descripcion = descripcion;
-        this.Comercio = Comercio;
+        this.comercio = comercio;
         this.estado = estado;
         this.valoracion = valoracion;
     }
@@ -23,11 +23,11 @@ public class DTOComentariosSinRespuestas {
     }
 
     public String getComercio() {
-        return Comercio;
+        return comercio;
     }
 
     public void setComercio(String Comercio) {
-        this.Comercio = Comercio;
+        this.comercio = Comercio;
     }
 
     public int getEstado() {
@@ -51,7 +51,7 @@ public class DTOComentariosSinRespuestas {
 
     @Override
     public String toString() {
-        return "DTOComentariosSinRespuestas{" + "descripcion=" + descripcion + ", Comercio=" + Comercio + ", estado=" + estado + ", valoracion=" + valoracion + '}';
+        return "DTOComentariosSinRespuestas{" + "descripcion=" + descripcion + ", comercio=" + comercio + ", estado=" + estado + ", valoracion=" + valoracion + '}';
     }
     
     
