@@ -8,7 +8,7 @@
         <jsp:include page="includes.jsp"></jsp:include>
 
         </head>
-        <body style="background-color: #1c1e21; " >
+        <body >
         <jsp:include page="header.jsp"></jsp:include>
 
             

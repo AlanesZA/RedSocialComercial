@@ -20,7 +20,7 @@
             <div class="container text-center ">
                 <div class="row">
                     <div class="col col-md-12">
-                        <table class="table table-bordered table-hover" >
+                        <table class="table table-hover" >
                             <thead>
                                 <tr>
                                     <th  class="text-center">Fecha Inicio</th>

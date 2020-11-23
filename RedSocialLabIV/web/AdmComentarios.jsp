@@ -17,7 +17,7 @@
             
             <div class="container">
 
-                <table class="table table-bordered table-hover">
+                <table class="table">
                     <thead>
                         <tr class="text-center">
                             <th>Nombre</th>
@@ -46,12 +46,20 @@
                                     <c:otherwise>No Activo</c:otherwise>
                                 </c:choose> 
                             </th>
-                            <td>${comentario.valoracion}</td>
+                            <td>
+                                <c:forEach var="estrellita" begin="1" end="${comentario.valoracion}">
+                                    ✩
+                                </c:forEach>
+                            </td>
                             <td>
                                 <c:choose>
-                                    <c:when test="${ comentario.estado == 1}"><a href="EditarComercio?estado=5&id=${comercio.id}" class="btn btn-danger" role="button" >Desactivar</a></c:when>
-                                    <c:otherwise>  <a href="EditarComercio?estado=3&id=${comercio.id}" class="btn btn-success" role="button" >Activar</a></c:otherwise>
-                                </c:choose> 
+                                    <c:when test="${ comentario.estado == 1}">
+                                        <a href="ListadoComentarios?estado=1&id=${comentario.idComentario}" class="btn btn-danger" role="button" >Desactivar</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="ListadoComentarios?estado=1&id=${comentario.idComentario}" class="btn btn-warning" role="button" >Reactivar</a>
+                                    </c:otherwise>  
+                                </c:choose>                                
                             </td>
 
                         </tr>

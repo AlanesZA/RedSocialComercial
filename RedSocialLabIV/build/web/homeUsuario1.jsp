@@ -96,15 +96,16 @@
                     </tr>
                 </thead>            
                 <tbody>
-                    <c:forEach var="comentario" items="${GBD.obtenerComentario()}">
+                    <c:forEach var="comentario" items="${GBD.obtenerComentarioXComercio(idComercio)}">
                         <tr>
                             <td>${comentario.nombre}</td>
                             <td>${comentario.descripcion}</td>  
-                            <td> <c:forEach items="${GBD.obtenerComentarioXComercio(idComercio)}" var="comercio">          
-                                    ${comercio.nombre}
+                            <td>${comentario.comercio.nombre}</td>
+                            <td>
+                                <c:forEach var="estrellita" begin="1" end="${comentario.valoracion}">
+                                    ✩
                                 </c:forEach>
                             </td>
-                            <td>${comentario.valoracion}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+
 
 public class GestorBD {
 
@@ -433,7 +433,7 @@ public class GestorBD {
                 int idComentario = rs.getInt("idComentario");
                 String descripcion = rs.getString("descripcion");
                 int idComercio = rs.getInt("idComercio");
-                int estado = rs.getInt("estado"); // estado 1 = repsondido
+                int estado = rs.getInt("estado"); // estado 1
                 int valoracion = rs.getInt("valoracion");
                 String nombre = rs.getString("nombre");
 
@@ -485,11 +485,13 @@ public class GestorBD {
 
         return lista;
     }
+    
+    //listado de comentarios por comercio 
     public ArrayList<Comentario> obtenerComentarioXComercio(int idC) {
         ArrayList<Comentario> lista = new ArrayList<>();
         try {
             abrirConexion();
-            PreparedStatement ps = con.prepareStatement("select  c.idComentario, c.nombre, c.descripcion,co.idComercio, c.valoracion\n"
+            PreparedStatement ps = con.prepareStatement("select  c.idComentario, c.nombre'cliente', c.descripcion,co.idComercio, co.nombre 'comercio', c.valoracion\n"
                                                         + "from Comentarios c, Comercios co\n"
                                                         + "where c.idComercio = co.idComercio and co.idComercio = ?");
             ps.clearParameters();
@@ -498,14 +500,16 @@ public class GestorBD {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int idc = rs.getInt("idComentario");
-                String nom = rs.getString("nombre");
+                String cliente = rs.getString("cliente");
                 String descripcion = rs.getString("descripcion");
+                String comercio = rs.getString("comercio");
                 int valoracion = rs.getInt("valoracion");
                 int id = rs.getInt("idComercio");
 
                 Comercio co = new Comercio();
                 co.setId(id);
-                Comentario com = new Comentario(idc, descripcion, co, 1, valoracion, nom);
+                co.setNombre(comercio);
+                Comentario com = new Comentario(idc, descripcion, co, 1, valoracion, cliente);
 
                 lista.add(com);
             }
@@ -570,6 +574,24 @@ public class GestorBD {
 
         }
     }
+    public void rehabilitarComentario(int idComentario) {
+        try {
+            abrirConexion();
+            PreparedStatement ps = con.prepareStatement("UPDATE Comentarios SET estado = 1 where idComentario = ?");
+            ps.clearParameters();
+            ps.setInt(1, idComentario);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            cerrarConexion();
+
+        }
+    }
+    
+    
+    
+    
 
     public ArrayList<DTOOfertaxComercio> obtenerOfertaxComercio(int idComercio) {
         ArrayList<DTOOfertaxComercio> lista = new ArrayList<>();

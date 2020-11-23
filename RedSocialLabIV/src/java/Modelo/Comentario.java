@@ -33,9 +33,6 @@ public class Comentario {
         this.valoracion = valoracion;
         this.nombre = nombre;
     }
-    
-    
-
 
     public int getIdComentario() {
         return idComentario;
@@ -85,6 +82,8 @@ public class Comentario {
         return "Comentario{" + "idComentario=" + idComentario + ", descripcion=" + descripcion + ", Comercio=" + comercio + ", estado=" + estado + ", valoracion=" + valoracion + ", nombre=" + nombre + '}';
     }
 
-   
-   
+    public boolean disponible() {
+        return (estado == 1) ? true : false;
+    }
+
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import Controlador.GestorBD;
@@ -24,25 +19,46 @@ public class ListadoComentarios extends HttpServlet {
             throws ServletException, IOException {
         
         GestorBD gestor = new GestorBD();
-        ArrayList<Comentario> comentario = gestor.obtenerComentario();
+        RequestDispatcher rd;       
+        int estado = Integer.parseInt(request.getParameter("estado"));
+        int idComentario = Integer.parseInt(request.getParameter("id"));
         
-        request.setAttribute("lista", comentario);
-        
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/AdmComentarios.jsp");
-        rd.forward(request, response);
+        switch (estado) {
+            case 1:
+            {
+                gestor.bajaComentario(idComentario);
+                rd = getServletContext().getRequestDispatcher("/AdmComentarios.jsp");
+                rd.forward(request, response);
+                break;
+            }
+            case 2:
+            {    
+                gestor.rehabilitarComentario(idComentario);
+                rd = getServletContext().getRequestDispatcher("/AdmComentarios.jsp");
+                rd.forward(request, response);
+                break;
+            }
+            default:
+            {
+                ArrayList<Comentario> comentario = gestor.obtenerComentario();        
+                request.setAttribute("lista", comentario);        
+                rd = getServletContext().getRequestDispatcher("/AdmComentarios.jsp");
+                rd.forward(request, response);
+                break;
+            }                
+        }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-
+        processRequest(request, response);
     }
 
     @Override

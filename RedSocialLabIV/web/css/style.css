@@ -13,14 +13,14 @@ body {
     background-repeat: no-repeat;
 }
 
-.table-hover{
-    background-color: #3282b8;
-}
-
-.container{
+.table{
     background-color: #2a3338;
-    color: white;
+    color: #cccccc;
     padding: 12px;
     padding-s: 6px;
     padding-xs: 2px;
+    
+}
+.table-hover{      
+        background-color: #382b8
 }
