@@ -107,9 +107,24 @@
                                 </c:forEach>
                             </td>
                         </tr>
+                        <c:forEach var="respuesta" items="${GBD.obtenerRespuestas(idComercio)}">
+                            <c:if test="${respuesta.idComentario == comentario.idComentario}">
+                                <tr>
+                                    <td class="text-right">Respuesta</td>
+                                    <td colspan="3">${respuesta.respuesta}</td>
+                                </tr>
+                            </c:if>
+                        </c:forEach>
                     </c:forEach>
                 </tbody>
             </table>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">                            
+                        <a href="homeUsuario.jsp" class="btn btn-success btn-block">Volver al Listado</a>
+                    </div>
+                </div>                
+            </div>
                
          <jsp:include page="footer.jsp"></jsp:include>
     </body>

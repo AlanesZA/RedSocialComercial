@@ -5,6 +5,7 @@ import Modelo.Comercio;
 import Modelo.DTOConsultaComentarioxComerciosxRespuestas;
 import Modelo.DTOOfertaxComercio;
 import Modelo.Oferta;
+import Modelo.Respuesta;
 import Modelo.Rubro;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -460,19 +461,20 @@ public class GestorBD {
         try {
             abrirConexion();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select  c.idComentario, c.nombre, c.descripcion,co.idComercio, c.valoracion\n"
+            ResultSet rs = st.executeQuery("select  c.idComentario, c.nombre, c.descripcion,co.idComercio, c.valoracion, c.estado\n"
                                             + "from Comentarios c, Comercios co\n"
                                             + "where c.idComercio = co.idComercio");
             while (rs.next()) {
                 int idc = rs.getInt("idComentario");
                 String nom = rs.getString("nombre");
                 String descripcion = rs.getString("descripcion");
+                int estado = rs.getInt("estado");
                 int valoracion = rs.getInt("valoracion");
                 int id = rs.getInt("idComercio");
 
                 Comercio co = new Comercio();
                 co.setId(id);
-                Comentario com = new Comentario(idc, descripcion, co, 1, valoracion, nom);
+                Comentario com = new Comentario(idc, descripcion, co, estado, valoracion, nom);
 
                 lista.add(com);
             }
@@ -619,6 +621,34 @@ public class GestorBD {
                 DTOOfertaxComercio DtoOC = new DTOOfertaxComercio(cantidad, fecha_inicio, precio_oferta, fecha_inicio_oferta, dias_vigencia, titulo, comercio, rubro);
 
                 lista.add(DtoOC);
+            }
+            rs.close();
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+
+        return lista;
+    }
+    
+    public ArrayList<Respuesta> obtenerRespuestas(int idComercio) {
+        ArrayList<Respuesta> lista = new ArrayList<Respuesta>();
+        try {
+            abrirConexion();
+            String sql = "SELECT * FROM Respuestas WHERE idComercio = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.clearParameters();
+            st.setInt(1, idComercio);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {                
+                int idComent = rs.getInt("idComentario");
+                int idResp = rs.getInt("idRespuesta");
+                String respuesta = rs.getString("respuesta");                
+
+                Respuesta r = new Respuesta(idResp, idComercio, idComent, respuesta);
+
+                lista.add(r);
             }
             rs.close();
         } catch (Exception exc) {

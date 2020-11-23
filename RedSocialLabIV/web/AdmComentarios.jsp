@@ -57,7 +57,7 @@
                                         <a href="ListadoComentarios?estado=1&id=${comentario.idComentario}" class="btn btn-danger" role="button" >Desactivar</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="ListadoComentarios?estado=1&id=${comentario.idComentario}" class="btn btn-warning" role="button" >Reactivar</a>
+                                        <a href="ListadoComentarios?estado=2&id=${comentario.idComentario}" class="btn btn-warning" role="button" >Reactivar</a>
                                     </c:otherwise>  
                                 </c:choose>                                
                             </td>
