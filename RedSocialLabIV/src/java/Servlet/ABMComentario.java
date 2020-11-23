@@ -13,66 +13,45 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ABMComentario", urlPatterns = {"/ABMComentario"})
 public class ABMComentario extends HttpServlet {
 
-    
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            String modo = request.getParameter("modo");
-            if (modo.equals("alta")) {
-                request.setAttribute("titulo", "Alta de Comentario");
-                RequestDispatcher rd = request.getRequestDispatcher("/homeUsuario1.jsp");
-                rd.forward(request, response);
-            } else if (modo.equals("editar")) {
-                int idCurso = Integer.parseInt(request.getParameter("idCurso"));
-                GestorBD gestor = new GestorBD();
-                Curso cursoEdit = gestor.getCurso(idCurso);
+        GestorBD gestor = new GestorBD();
+        String modo = request.getParameter("modo");
+        int id = Integer.parseInt(request.getParameter("id"));
 
-                //Setear atributos y enviar petición
-                request.setAttribute("titulo", "Editar Curso");
-                request.setAttribute("curso", cursoEdit);
-                RequestDispatcher rd = request.getRequestDispatcher("/datosCurso.jsp");
-                rd.forward(request, response);
-            } else if (modo.equals("cambiarEstado")) {
-                //Tomar parámetro idCurso, buscar en BD y cambiar estado
-                int idCurso = Integer.parseInt(request.getParameter("idCurso"));
-                // No llegué...
-            }
-     
+        if (modo.equals("alta")) {
+
+            Comercio comercio = gestor.obtenerComercioUpdate(id);
+            request.getSession().setAttribute("Comercio", comercio);
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/homeUsuario1.jsp");
+            rd.forward(request, response);
+        }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
-            String nombre = request.getParameter("txtNombre");
-            String descripcion = request.getParameter("texareaComentario");
-            int valoracion = Integer.parseInt(request.getParameter("idValoracion"));            
-            
-            Comercio co = new Comercio();
-            co.setNombre(co);
-            Comentario comentario = new Comentario(0, descripcion, co, 1, valoracion, nombre);
+// 
+        String modo = request.getParameter("modo");
+
+        if (modo.equals("alta")) {
             GestorBD gestor = new GestorBD();
+            int idComercio = Integer.parseInt(request.getParameter("idComercio"));
+            String nombreCliente = request.getParameter("txtNombre");
+            String com = request.getParameter("txtComentario");
+            int valoracion = Integer.parseInt(request.getParameter("cboValoracion"));
 
-            //Chequear si viene desde la opción Alta o Editar
-            if (id
-                    
-                    == 0) {
-                gestor.agregarCurso(curso);
-            } else {                
-                gestor.modificarCurso(curso);
-            }
+            Comercio co = gestor.obtenerComercioUpdate(idComercio);
+            Comentario comentario = new Comentario(com, co, 1, valoracion, nombreCliente);
 
-            //Redirigir al Listado por GET
-            response.sendRedirect(getServletContext().getContextPath() + "/ListadoCursos");
-        
-           
-        
+            gestor.insertarNuevoComentario(comentario);
+            RequestDispatcher rd = request.getRequestDispatcher("/homeUsuario1.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
-    
-    
     @Override
     public String getServletInfo() {
         return "Short description";

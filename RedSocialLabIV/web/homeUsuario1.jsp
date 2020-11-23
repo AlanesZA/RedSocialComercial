@@ -45,21 +45,25 @@
             </table>
             <br>
             <br>
+            
             <div class="text-center">
                 <h1>Comentarios</h1>
             </div>
-            <form id="comentarios" method="post" action="alta">
+            <form id="comentarios" method="post" action="ABMComentario?modo=alta">
+                <input type="hidden" name="idComercio" value="${idComercio}"/>
                 <div class="form-group">                            
                     <label for="comentario" class="col-form-label">Nombre:</label>
                     <input class="form-control" name="txtNombre" placeholder="">
                 </div>
                 <div class="form-group">                            
                     <label for="comentario" class="col-form-label">Comentario:</label>
-                    <textarea class="form-control" aria-label="texareaComentario"></textarea>
+                    <textarea class="form-control" name="txtComentario"></textarea>
                 </div>
+                
+                
                 <div class="form-group">
                     <label for="comercio" class="col-form-label">Valoración:</label>                
-                    <select class="form-control" name="idValoracion" id="comercio">
+                    <select class="form-control" name="cboValoracion" id="comercio">
                         <option value="">Todas las valoraciones</option>
                         <option value="5">Cinco estrellas</option>
                         <option value="4">Cuatro estrellas</option>
@@ -96,8 +100,8 @@
                         <tr>
                             <td>${comentario.nombre}</td>
                             <td>${comentario.descripcion}</td>  
-                            <td> <c:forEach items="${GBD.obtenerComercios()}" var="comercio">          
-                                    <c:if test="${comentario.comercio.id == comercio.id}">${comercio.nombre}</c:if> 
+                            <td> <c:forEach items="${GBD.obtenerComentarioXComercio(idComercio)}" var="comercio">          
+                                    ${comercio.nombre}
                                 </c:forEach>
                             </td>
                             <td>${comentario.valoracion}</td>

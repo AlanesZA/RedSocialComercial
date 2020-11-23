@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.Comentario;
 import Modelo.Comercio;
+import Modelo.DTOConsultaComentarioxComerciosxRespuestas;
 import Modelo.DTOOfertaxComercio;
 import Modelo.Oferta;
 import Modelo.Rubro;
@@ -400,14 +401,16 @@ public class GestorBD {
     public void insertarNuevoComentario(Comentario co) {
         try {
             abrirConexion();
-            PreparedStatement ps = con.prepareStatement("INSERT  INTO Comentarios VALUES (?,?,?,?,?,?)");
+            String ConsultaSql = "INSERT INTO Comentarios\n" +
+                                "           (descripcion, idComercio, estado, valoracion, nombre)\n" +
+                                "     VALUES (?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(ConsultaSql);
             ps.clearParameters();
             ps.setString(1, co.getDescripcion());
             ps.setInt(2, co.getComercio().getId());
             ps.setInt(3, co.getEstado());
             ps.setInt(4, co.getValoracion());
             ps.setString(5, co.getNombre());
-
             ps.execute();
 
         } catch (SQLException e) {
@@ -416,6 +419,8 @@ public class GestorBD {
             cerrarConexion();
         }
     }
+    
+    
 
     public ArrayList<Comentario> obtenerComentarios(int idCome) {
         ArrayList<Comentario> lista = new ArrayList<Comentario>();
@@ -456,8 +461,8 @@ public class GestorBD {
             abrirConexion();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select  c.idComentario, c.nombre, c.descripcion,co.idComercio, c.valoracion\n"
-                    + "from Comentarios c, Comercios co\n"
-                    + "where c.idComercio = co.idComercio");
+                                            + "from Comentarios c, Comercios co\n"
+                                            + "where c.idComercio = co.idComercio");
             while (rs.next()) {
                 int idc = rs.getInt("idComentario");
                 String nom = rs.getString("nombre");
@@ -470,6 +475,76 @@ public class GestorBD {
                 Comentario com = new Comentario(idc, descripcion, co, 1, valoracion, nom);
 
                 lista.add(com);
+            }
+            rs.close();
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+
+        return lista;
+    }
+    public ArrayList<Comentario> obtenerComentarioXComercio(int idC) {
+        ArrayList<Comentario> lista = new ArrayList<>();
+        try {
+            abrirConexion();
+            PreparedStatement ps = con.prepareStatement("select  c.idComentario, c.nombre, c.descripcion,co.idComercio, c.valoracion\n"
+                                                        + "from Comentarios c, Comercios co\n"
+                                                        + "where c.idComercio = co.idComercio and co.idComercio = ?");
+            ps.clearParameters();
+            ps.setInt(1, idC);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int idc = rs.getInt("idComentario");
+                String nom = rs.getString("nombre");
+                String descripcion = rs.getString("descripcion");
+                int valoracion = rs.getInt("valoracion");
+                int id = rs.getInt("idComercio");
+
+                Comercio co = new Comercio();
+                co.setId(id);
+                Comentario com = new Comentario(idc, descripcion, co, 1, valoracion, nom);
+
+                lista.add(com);
+            }
+            rs.close();
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+
+        return lista;
+    }
+
+    //consulta de comentarios por comercio - lado del cliente
+    public ArrayList<DTOConsultaComentarioxComerciosxRespuestas> obtenerConsultaComentarioxComerxResp(int idComercio) {
+        ArrayList<DTOConsultaComentarioxComerciosxRespuestas> lista = new ArrayList<>();
+        try {
+            abrirConexion();
+            PreparedStatement ps = con.prepareStatement("select cs.idComentario, cs.nombre AS USUARIO, c.nombre AS COMERCIO, o.titulo as OFERTA,"
+                    + " cs.descripcion AS COMENTARIO, cs.valoracion AS VALORACION\n"
+                    + "from Comercios c, Comentarios cs, Ofertas o\n"
+                    + "where c.idComercio = o.idComercio\n"
+                    + "and cs.idComentario = c.idComercio\n"
+                    + "and o.idComercio = c.idComercio\n"
+                    + "and c.idComercio = ?");
+
+            ps.setInt(1, idComercio);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int idComentario = rs.getInt("idComentario");
+                String usuario = rs.getString("USUARIO");
+                String comercio = rs.getString("COMERCIO");
+                String oferta = rs.getString("OFERTA");
+                String comentario = rs.getString("COMENTARIO");
+                int valoracion = rs.getInt("VALORACION");
+
+                DTOConsultaComentarioxComerciosxRespuestas D = new DTOConsultaComentarioxComerciosxRespuestas(idComentario, usuario, comercio, oferta, comentario, valoracion);
+
+                lista.add(D);
             }
             rs.close();
         } catch (Exception exc) {
@@ -519,7 +594,7 @@ public class GestorBD {
                 String comercio = rs.getString("nombre");
                 String rubro = rs.getString("rubro");
 
-                DTOOfertaxComercio DtoOC = new DTOOfertaxComercio(cantidad, fecha_inicio, precio_oferta, fecha_inicio_oferta, dias_vigencia, titulo,comercio,rubro );
+                DTOOfertaxComercio DtoOC = new DTOOfertaxComercio(cantidad, fecha_inicio, precio_oferta, fecha_inicio_oferta, dias_vigencia, titulo, comercio, rubro);
 
                 lista.add(DtoOC);
             }

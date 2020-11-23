@@ -17,10 +17,10 @@
                 <h1>Listado de Comercios</h1>
             </div> 
             <br/>
-            <div class="container text-center">
+            <div class="container text-center ">
                 <div class="row">
                     <div class="col col-md-12">
-                        <table class="table">
+                        <table class="table table-bordered table-hover" >
                             <thead>
                                 <tr>
                                     <th  class="text-center">Fecha Inicio</th>

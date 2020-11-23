@@ -8,9 +8,13 @@
         <title>Home - Comercios - Comentarios</title>
 
         <jsp:include page="includes.jsp"></jsp:include>
-
+        <style>
+            .body{
+                ;
+            }
+        </style>
         </head>
-        <body >
+        <body>
         <jsp:include page="headerC.jsp"></jsp:include>
 
             <div class="col col-lg-6">

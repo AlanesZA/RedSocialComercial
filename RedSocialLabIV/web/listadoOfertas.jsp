@@ -12,8 +12,11 @@
         </head>
         <body >
         <jsp:include page="header.jsp"></jsp:include>
-            
-        
+
+            <div class="text-center">
+                <h1>Listado de Ofertas</h1>
+            </div> 
+            <br/>
             <div class="container">
                 <div class="row">
                     <div class="col col-md-12">
@@ -41,9 +44,16 @@
                                     <td>${oferta.fechaInicioOferta}</td>
                                     <td>${oferta.diasVigencia}</td>
                                     <td>${oferta.titulo}</td>
-                                      <td>${oferta.estado}</td>
-                                    <td>${oferta.comercio.id}</td>
-
+                                    <td class="text-center">
+                                        <c:choose>
+                                            <c:when test="${oferta.estado == 1}">Activo</c:when>
+                                            <c:otherwise>No Activo</c:otherwise>
+                                        </c:choose> 
+                                    </td>
+                                    <td> <c:forEach items="${GBD.obtenerComercios()}" var="comercio">          
+                                            <c:if test="${oferta.comercio.id == comercio.id}">${comercio.nombre}</c:if> 
+                                        </c:forEach>
+                                    </td>
                                     <td> 
                                         <a href="EditarOferta?estado=3&id=${oferta.id} "class="btn btn-success" role="button">Editar</a>
                                     </td>

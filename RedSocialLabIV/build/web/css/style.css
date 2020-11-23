@@ -7,4 +7,20 @@ and open the template in the editor.
 body { 
     padding-top: 70px;
     padding-bottom: 70px;
+    
+    background-image: url("../archivos/IMAG3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.table-hover{
+    background-color: #3282b8;
+}
+
+.container{
+    background-color: #2a3338;
+    color: white;
+    padding: 12px;
+    padding-s: 6px;
+    padding-xs: 2px;
 }

@@ -24,6 +24,7 @@ public class UsuarioNav extends HttpServlet {
 
         ArrayList<DTOOfertaxComercio> oferta = gestor.obtenerOfertaxComercio(id);
         request.getSession().setAttribute("lista", oferta);
+        request.getSession().setAttribute("idComercio", id);
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/homeUsuario1.jsp");
         rd.forward(request, response);
         

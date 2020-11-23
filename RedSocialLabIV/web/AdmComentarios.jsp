@@ -11,8 +11,6 @@
         </head>
         <body>
         <jsp:include page="header.jsp"></jsp:include>
-
-
             <div class="text-center">
                 <h1>Listado de Comentarios</h1>
             </div> <br/>

@@ -26,6 +26,16 @@ public class Comentario {
         this.nombre = nombre;
     }
 
+    public Comentario(String descripcion, Comercio comercio, int estado, int valoracion, String nombre) {
+        this.descripcion = descripcion;
+        this.comercio = comercio;
+        this.estado = estado;
+        this.valoracion = valoracion;
+        this.nombre = nombre;
+    }
+    
+    
+
 
     public int getIdComentario() {
         return idComentario;
