@@ -92,7 +92,7 @@
                         <th>Nombre</th>
                         <th>Descripcion</th>
                         <th>Comercio</th>
-                        <th>Valoracion</th>
+                        <th colspan="2">Valoracion</th>
                     </tr>
                 </thead>            
                 <tbody>
@@ -105,6 +105,9 @@
                                 <c:forEach var="estrellita" begin="1" end="${comentario.valoracion}">
                                     ✩
                                 </c:forEach>
+                            </td>
+                            <td>
+                                <a href="Respuestas?idComercio=${idComercio}&idComentario=${comentario.idComentario}" class="btn btn-success">Responder</a>
                             </td>
                         </tr>
                         <c:forEach var="respuesta" items="${GBD.obtenerRespuestas(idComercio)}">

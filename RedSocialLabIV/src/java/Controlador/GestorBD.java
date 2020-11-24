@@ -632,6 +632,26 @@ public class GestorBD {
         return lista;
     }
     
+        public void insertarNuevaRespuesta(Respuesta resp) {
+        try {
+            abrirConexion();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Respuestas (idComentario, idComercio, respuesta) VALUES (?,?,?)");
+            
+            ps.clearParameters();            
+            ps.setInt(1, resp.getIdComentario());
+            ps.setInt(2, resp.getIdComercio());
+            ps.setString(3, resp.getRespuesta());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            cerrarConexion();
+        }
+    }
+    
+    
     public ArrayList<Respuesta> obtenerRespuestas(int idComercio) {
         ArrayList<Respuesta> lista = new ArrayList<Respuesta>();
         try {
